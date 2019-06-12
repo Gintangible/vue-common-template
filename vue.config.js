@@ -5,6 +5,7 @@ function resolve(dir) {
 }
 
 module.exports = {
+    outputDir: process.env.NODE_ENV === "development" ? 'devdist' : 'dist', // 不同的环境打不同包名
     configureWebpack: {
         resolve: {
             // 添加别名
