@@ -9,6 +9,8 @@ require('./mock'); // 引入mockjs
 // 引入icon
 import './icons';
 
+import 'normalize.css/normalize.css';
+
 console.log(process.env.VUE_APP_URL)
 
 Vue.config.productionTip = false;
