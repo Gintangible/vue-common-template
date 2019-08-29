@@ -11,17 +11,13 @@
 import sidebar from './components/sidebar';
 
 export default {
+	name: 'Layout',
 	data() {
 		return {};
 	},
-
 	components: {
 		sidebar
-	},
-
-	computed: {},
-
-	methods: {}
+	}
 };
 </script>
 <style lang='scss' scoped>
@@ -29,5 +25,15 @@ export default {
     position: relative;
     width: 100%;
     height: 100%;
+}
+
+.sidebar-container{
+	background: #ccc;
+}
+
+.main-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 </style>

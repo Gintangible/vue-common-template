@@ -1,9 +1,11 @@
 <template>
-	<div></div>
+	<div>
+		<xw_progress></xw_progress>
+	</div>
 </template>
 
 <script>
-import progress from 'components/Progress';
+import xw_progress from 'components/Progress';
 
 export default {
 	data() {
@@ -11,8 +13,8 @@ export default {
 	},
 
 	components: {
-    progress
-  },
+		xw_progress
+	},
 
 	computed: {},
 

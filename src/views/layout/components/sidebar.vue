@@ -1,21 +1,39 @@
 <template>
-  <div>sidebar view</div>
+	<ul class="sidebar-wrap">
+		<sidebarItem v-for="route in routersFilter" :key="route.path" :item="route" :base-path="route.path"></sidebarItem>
+	</ul>
 </template>
 
 <script>
+import { componentRouters } from '@/router';
+import sidebarItem from './sidebarItem';
+
 export default {
-  data () {
-    return {
-    };
-  },
+	name: 'Sidebar',
+	data() {
+		return {
+			componentRouters: componentRouters
+		};
+	},
 
-  components: {},
+	components: { sidebarItem },
 
-  computed: {},
+	computed: {
+		routersFilter() {
+			let routerAry = [];
+			this.componentRouters.forEach(item => {
+				if(item.children) {
+          routerAry = item.children
+        }
+			});
+			return routerAry;
+		}
+	},
 
-  methods: {}
-}
-
+};
 </script>
 <style lang='scss' scoped>
+.sidebar-wrap{
+  margin-top: 0;
+}
 </style>
