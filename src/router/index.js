@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import NProgress from 'nprogress';
 
 Vue.use(Router);
 
@@ -12,6 +13,15 @@ export const routes = [
         component: Layout,
     },
 ];
+
+router.beforeEach(() => {
+    NProgress.start();
+});
+
+router.afterEach(() => {
+    NProgress.done();
+});
+
 
 export default new Router({
     mode: 'history',
