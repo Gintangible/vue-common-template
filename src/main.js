@@ -6,6 +6,8 @@ import 'normalize.css/normalize.css';
 
 if (process.env.NODE_ENV !== 'production') {
     require('./mock'); // 引入mockjs
+    const eruda = require('eruda');
+    eruda.init();
 }
 
 // 引入icon
@@ -17,4 +19,4 @@ new Vue({
     router,
     store,
     render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');
