@@ -1,25 +1,20 @@
 <template>
-	<div>
-		<xw_progress></xw_progress>
+	<div class="app-container">
+		主页
 	</div>
 </template>
 
 <script>
-import xw_progress from 'components/Progress';
-
 export default {
+	name: 'Layout',
 	data() {
 		return {};
 	},
-
 	components: {
-		xw_progress
-	},
 
-	computed: {},
-
-	methods: {}
+	}
 };
 </script>
 <style lang='scss' scoped>
+
 </style>

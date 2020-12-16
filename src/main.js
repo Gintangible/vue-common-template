@@ -2,7 +2,6 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router/index';
 import store from './store';
-import './styles/index.scss';
 import 'normalize.css/normalize.css';
 
 if (process.env.NODE_ENV !== 'production') {

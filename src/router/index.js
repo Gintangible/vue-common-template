@@ -3,27 +3,17 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-import Layout from 'views/layout/Layout';
+import Layout from 'views/layout/home';
 
-export const componentRouters = [
+export const routes = [
     {
         path: '/',
-        // name: 'Layout',
+        name: 'Layout',
         component: Layout,
-        hidden: true,
-        redirect: 'progress',
-        children: [
-            {
-                path: 'progress',
-                name: 'ProgressDemo',
-                component: () => import('views/progress/index'),
-            }
-        ]
     },
 ];
 
 export default new Router({
     mode: 'history',
-    base: process.env.BASE_URL,
-    routes: componentRouters
+    routes,
 });

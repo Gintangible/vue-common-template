@@ -1,4 +1,5 @@
 const path = require('path');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 function resolve(dir) {
     return path.join(__dirname, dir);
@@ -7,8 +8,30 @@ function resolve(dir) {
 module.exports = {
     outputDir: process.env.NODE_ENV === "development" ? 'devdist' : 'dist', // 不同的环境打不同包名
     publicPath: './',
+    // 生产环境构建生成 source map
     productionSourceMap: false,
+    //文件名哈希
+    filenameHashing: true,
     chainWebpack: (config) => {
+        // 对@/icons 文件夹下的 svg 图标进行自动注册，文件全部打包成 svg-sprite。
+        config.module
+            .rule('svg')
+            .exclude.add(resolve('src/icons/svg'))
+            .end();
+        config.module
+            .rule('icons')
+            .test(/\.svg$/)
+            .include.add(resolve('src/icons/svg'))
+            .end()
+            .use('svg-sprite-loader')
+            .loader('svg-sprite-loader');
+        // 设置路径别名
+        config.resolve.alias
+            .set('@', resolve('src'))
+            .set('views', resolve('src/views'))
+            .set('assets', resolve('src/assets'))
+            .set('components', resolve('src/components'));
+
         config.plugin('define').tap((definitions) => {
             const args = definitions[0]['process.env'];
             args.VUE_APP_APP_NAME = JSON.stringify(require('./package.json').name);
@@ -16,18 +39,24 @@ module.exports = {
             return definitions;
         });
     },
-    configureWebpack: {
-        resolve: {
-            // 添加别名
-            alias: {
-                'assets': resolve('src/assets'),
-                'components': resolve('src/components'),
-                'views': resolve('src/views')
-            }
+    configureWebpack: (config) => {
+        if (process.env.use_analyzer) {
+            config.plugins.push(new BundleAnalyzerPlugin());
+        }
+    },
+    css: {
+        sourceMap: false,
+        loaderOptions: {
+            sass: {
+                prependData: `
+                @import '@/styles/variable.scss';
+                @import '@/styles/mixins.scss';
+                `,
+            },
         }
     },
     // 关闭eslint
     // lintOnSave: false
-    /* 必须对下面这些包也通过babel编译，因为其发布代码语法为es6，不兼容旧版浏览器 */
+    // 对下面这些包也通过babel编译
     // transpileDependencies: [],
 };

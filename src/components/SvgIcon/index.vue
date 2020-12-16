@@ -6,8 +6,9 @@
 
 <script>
 export default {
+    name: 'Gsvg',
     props: {
-        iconClass: {
+        name: {
             type: String,
             required: true
         },
@@ -18,7 +19,7 @@ export default {
     },
     computed: {
         iconName() {
-            return `#icon-${this.iconClass}`;
+            return `#icon-${this.name}`;
         },
         svgClass() {
             if (this.className) {
@@ -32,9 +33,9 @@ export default {
 </script>
 <style scoped>
 .svg-icon {
-    width: 1em;
-    height: 1em;
-    vertical-align: -0.15em;
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
     fill: currentColor;
     overflow: hidden;
 }
