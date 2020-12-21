@@ -5,6 +5,8 @@ import '@/styles/scrollbar.css';
 import App from './App.vue';
 import router from './router/index';
 import store from './store';
+import fastclick from 'fastclick'
+fastclick.attach(document.body);         // 解决移动端事件300ms延时
 
 if (process.env.NODE_ENV !== 'production') {
   require('./mock'); // 引入mockjs
