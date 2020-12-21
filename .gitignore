@@ -3,6 +3,10 @@ node_modules
 /dist
 /devdist
 
+# lock files
+package-lock.json
+yarn.lock
+
 # local env files
 .env.local
 .env.*.local
