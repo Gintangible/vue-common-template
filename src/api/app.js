@@ -1,8 +1,10 @@
-import fetch from '@/utils/fetch';
+import request from "@/utils/request";
 
 // 账号退出
-export const logout = () =>
-    fetch({
-        url: '/api',
-        method: 'get'
-    });
+const logout = () =>
+  request({
+    url: "/api",
+    method: "get",
+  });
+
+export { logout };
