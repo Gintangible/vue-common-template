@@ -1,0 +1,17 @@
+// rem 基准
+$screen-width: 37.5;
+
+@function rem($px) {
+    @return $px / $screen-width * 1rem;
+}
+
+@mixin lineHeight($rem) {
+	height: $rem;
+	line-height: $rem;
+}
+
+%nowrap {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
