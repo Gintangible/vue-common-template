@@ -64,4 +64,4 @@ module.exports = {
     // eslint解析器
     parser: 'babel-eslint',
   }
-}
+};

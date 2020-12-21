@@ -1,5 +1,5 @@
 const path = require('path');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 
 function resolve(dir) {
     return path.join(__dirname, dir);
@@ -7,10 +7,11 @@ function resolve(dir) {
 
 module.exports = {
     outputDir: process.env.NODE_ENV === "development" ? 'devdist' : 'dist', // 不同的环境打不同包名
+    assetsDir: 'static',
     publicPath: './',
     // 生产环境构建生成 source map
     productionSourceMap: false,
-    //文件名哈希
+    // 文件名哈希
     filenameHashing: true,
     chainWebpack: (config) => {
         // 对@/icons 文件夹下的 svg 图标进行自动注册，文件全部打包成 svg-sprite。
@@ -55,8 +56,8 @@ module.exports = {
             },
         }
     },
-    // 关闭eslint
-    // lintOnSave: false
+    // eslint 检测
+    lintOnSave: 'error',
     // 对下面这些包也通过babel编译
     // transpileDependencies: [],
 };

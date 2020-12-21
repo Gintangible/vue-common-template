@@ -4,26 +4,37 @@ import NProgress from 'nprogress';
 
 Vue.use(Router);
 
-import Layout from 'views/layout/home';
+import Home from 'views/Home/home';
 
-export const routes = [
+const routes = [
     {
         path: '/',
-        name: 'Layout',
-        component: Layout,
+        name: 'Home',
+        component: Home,
     },
+    {
+        path: '*',
+        name: 'Error404',
+        component: () => import('views/error404.vue'),
+    }
 ];
 
-router.beforeEach(() => {
-    NProgress.start();
-});
-
-router.afterEach(() => {
-    NProgress.done();
-});
-
-
-export default new Router({
-    mode: 'history',
+const router = new Router({
     routes,
 });
+
+router.beforeEach((to, from, next) => {
+    NProgress.start();
+    if (next) {
+        next();
+    }
+});
+
+router.afterEach((to, from, next) => {
+    NProgress.done();
+    if (next) {
+        next();
+    }
+});
+
+export default router;

@@ -1,5 +1,5 @@
 export default {
-    api: res => {
+    api: () => {
         return {
             data: []
         };

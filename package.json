@@ -10,6 +10,7 @@
     "analyze": "use_analyzer=true vue-cli-service build --mode production",
     "analyze:stage": "use_analyzer=true vue-cli-service build --mode stage",
     "lint": "vue-cli-service lint"
+
   },
   "dependencies": {
     "normalize.css": "^8.0.1",
@@ -27,7 +28,7 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "mockjs": "^1.0.1-beta3",
-    "node-sass": "^5.0.0",
+    "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0",
     "vue-template-compiler": "^2.6.10",
     "webpack-bundle-analyzer": "^4.2.0"
