@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "amfe-flexible": "^2.2.1",
+    "es-check": "^5.1.4",
     "fastclick": "^1.0.6",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
@@ -31,6 +32,7 @@
     "mockjs": "^1.0.1-beta3",
     "node-sass": "^5.0.0",
     "sass-loader": "^10.1.0",
+    "svg-sprite-loader": "^5.2.1",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.0.0",
     "webpack-bundle-analyzer": "^4.2.0"

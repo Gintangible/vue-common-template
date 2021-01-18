@@ -1,7 +1,8 @@
-const API_BASE_URL = process.env.VUE_APP_BASE_URL;        // 请求地址
-const REQUEST_TIMEOUT = 5000;                             // HTTP请求超时时间，单位为毫秒，默认值为5分钟
+// 根据环境引入不同配置 process.env.VUE_APP_ENV
+const env = process.env.VUE_APP_ENV || 'development';
+const defaultConfig = require('./common');
+const envConfig = require('./env.' + env);
+console('config env = {0}', env);
+const config = Object.assign({}, defaultConfig, envConfig);
 
-export default {
-  api_base_url: API_BASE_URL,
-  request_timeout: REQUEST_TIMEOUT,
-};
+export default config;

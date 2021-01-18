@@ -13,6 +13,11 @@ const routes = [
         component: Home,
     },
     {
+      path: '/icons',
+      name: 'Icons',
+      component: () => import('views/icon'),
+    },
+    {
         path: '*',
         name: 'Error404',
         component: () => import('views/error404.vue'),

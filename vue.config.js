@@ -15,17 +15,17 @@ module.exports = {
   filenameHashing: true,
   chainWebpack: (config) => {
     // 对@/icons 文件夹下的 svg 图标进行自动注册，文件全部打包成 svg-sprite。
-    config.module
-      .rule('svg')
-      .exclude.add(resolve('src/icons/svg'))
-      .end();
-    config.module
-      .rule('icons')
-      .test(/\.svg$/)
-      .include.add(resolve('src/icons/svg'))
-      .end()
-      .use('svg-sprite-loader')
-      .loader('svg-sprite-loader');
+    // config.module
+    //   .rule('svg')
+    //   .exclude.add(resolve('src/icons/svg'))
+    //   .end();
+    // config.module
+    //   .rule('icons')
+    //   .test(/\.svg$/)
+    //   .include.add(resolve('src/icons/svg'))
+    //   .end()
+    //   .use('svg-sprite-loader')
+    //   .loader('svg-sprite-loader');
     // 设置路径别名
     config.resolve.alias
       .set('@', resolve('src'))
