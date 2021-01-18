@@ -31,6 +31,7 @@
     "eslint-plugin-vue": "^5.0.0",
     "mockjs": "^1.0.1-beta3",
     "node-sass": "^5.0.0",
+    "postcss-pxtorem": "^5.1.1",
     "sass-loader": "^10.1.0",
     "svg-sprite-loader": "^5.2.1",
     "vue-template-compiler": "^2.6.10",

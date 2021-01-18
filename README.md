@@ -110,16 +110,16 @@ yarn add VConsole
 ```
 
 > main.js 中引入
-```
+
+```javascript
+const eruda = require('eruda');
+//import VConsole from 'vconsole';
 if (process.env.NODE_ENV !== 'production') {
   // eruda 引入
-  const eruda = require('eruda');
   eruda.init();
   
   // vConsole
-  
-  import VConsole from 'vconsole';
-  new VConsole();
+  //new VConsole();
 }
 ```
 
