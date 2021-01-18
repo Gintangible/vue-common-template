@@ -96,4 +96,6 @@ module.exports = {
 }
 ```
 
+在 `main.js` 中引入 `import 'amfe-flexible'`;
+
 [▲ 回顶部](#top)
