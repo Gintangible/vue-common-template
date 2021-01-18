@@ -17,8 +17,8 @@ yarn serve
 <span id="top">目录</span>
 
 - [x] [配置多环境变量](#env)
-- [] [rem 适配](#rem)
-- [] [eruda 移动端 log](#eruda)
+- [x] [rem 适配](#rem)
+- [x] [eruda 移动端 log](#eruda)
 - [] [vantUI 按需加载](#vant)
 - [] [Vuex 状态管理](#vuex)
 - [] [Vue-router](#router)
@@ -99,3 +99,29 @@ module.exports = {
 在 `main.js` 中引入 `import 'amfe-flexible'`;
 
 [▲ 回顶部](#top)
+
+### <span id="eruda">移动端 log</span>
+
+在移动端，是无法看到日志。可以引入一下插件 `eruda` 或 `vConsole`。当前使用 `eruda`。
+
+```
+yarn add eruda
+yarn add VConsole
+```
+
+> main.js 中引入
+```
+if (process.env.NODE_ENV !== 'production') {
+  // eruda 引入
+  const eruda = require('eruda');
+  eruda.init();
+  
+  // vConsole
+  
+  import VConsole from 'vconsole';
+  new VConsole();
+}
+```
+
+### <span id="vuex">Vuex 状态管理</span>
+
