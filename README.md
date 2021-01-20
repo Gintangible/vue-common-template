@@ -76,10 +76,10 @@ module.exports = {
         // 兼容浏览器，添加前缀
         autoprefixer: {
             overrideBrowserslist: [
-                'Android 4.1', 
-                'iOS 7.1', 
-                'Chrome > 31', 
-                'ff > 31', 
+                'Android 4.1',
+                'iOS 7.1',
+                'Chrome > 31',
+                'ff > 31',
                 'ie >= 8',
                 "last 10 versions", // 所有主流浏览器最近10版本用
             ]
@@ -117,7 +117,7 @@ const eruda = require('eruda');
 if (process.env.NODE_ENV !== 'production') {
   // eruda 引入
   eruda.init();
-  
+
   // vConsole
   //new VConsole();
 }
@@ -125,3 +125,83 @@ if (process.env.NODE_ENV !== 'production') {
 
 ### <span id="vuex">Vuex 状态管理</span>
 
+[Vuex 官方文档](https://vuex.vuejs.org/zh/)
+[vuex-persist 文档](https://github.com/championswimmer/vuex-persist)
+
+##### 安装命令
+
+```
+yarn add vuex
+yarn add vuex-persist
+```
+使用 `vuex` 保存数据，如果刷新页面的话，会把`store` 中的数据清掉，故 `vuex-persist` 做持久化储存。
+
+##### 目录结构
+
+```bash
+├── store
+│   ├── modules
+│   │   └── app.js
+│   ├── index.js
+│   ├── getters.js
+│   ├── persist.js
+```
+
+##### main.js 引入
+
+```javascript
+import Vue from 'vue'
+import App from './App.vue'
+import store from './store'
+new Vue({
+  el: '#app',
+  store,
+  render: h => h(App)
+})
+```
+##### 使用方式
+
+```html
+<script>
+  import { mapGetters, mapState, mapMutations, mapActions } from 'vuex'
+  export default {
+    computed: {
+      ...mapGetters(['userName']),
+      ...mapState({
+        user: (state) => state.user,
+      }),
+      // ...mapState('app', {
+      //   userName: (state) => state.userName,
+      // }),
+    },
+
+    created() {
+      // state 获取
+      // this.store.state.user;
+
+      this.SET_USER();
+      // this.SET_USER_NAME();
+    },
+
+    methods: {
+      // mapMutations 方式，actions 与 mapActions 方法一样
+      ...mapMutations({
+        SET_USER: 'SET_USER',
+      }),
+      // ...mapMutations('app', {
+      //   SET_USER_NAME: 'SET_USER_NAME',
+      // }),
+
+      // Action 通过 store.commit/store.dispatch 方法触发
+      doVuex() {
+        this.$store.commit('SET_USER', 'commit 触发');
+        this.$store.dispatch('setUserAsync', 'dispatch 触发');
+      },
+    }
+  }
+</script>
+```
+
+[▲ 回顶部](#top)
+
+### <span id="router">Vue-router</span>
