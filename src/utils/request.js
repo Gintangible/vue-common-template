@@ -15,7 +15,7 @@ request.interceptors.request.use(
     if (config.loading) {
       Toast.loading({
         forbidClick: true
-      })
+      });
     }
     // Do something before request sending
     return config;
