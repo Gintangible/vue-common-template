@@ -24,6 +24,7 @@ yarn serve
 - [x] [Vue-router](#router)
 - [x] [Axios 封装及接口管理](#axios)
 - [x] [vue.config.js 及相关配置](#vue_config)
+- [x] [去掉 console](#rm_console)
 
 ### <span id="env">配置多环境变量</span>
 
@@ -383,5 +384,40 @@ appApi.getUserInfo()
 在 `vscode` 里面安装 `EditorConfig`， 配置见 `.editorconfig` 文件。
 
 **配合代码检查工具使用，比如说：ESLint或TSLint，统一代码风格。**
+
+[▲ 回顶部](#top)
+
+### <span id="rm_console">去掉 console</span>
+
+去掉生产环境的 `console.log`。
+
+##### 安装
+
+```
+yarn add babel-plugin-transform-remove-console --dev
+```
+
+##### 配置 `babel.config.js`
+
+```javascript
+const prodPlugin = [];
+
+if (process.env.NODE_ENV === 'production') {
+  // 如果是生产环境，则自动清理掉打印的日志，但保留error 与 warn
+  prodPlugin.push([
+    'transform-remove-console',
+    {
+      // 保留 console.error 与 console.warn
+      exclude: ['error', 'warn']
+    }
+  ]);
+}
+
+module.exports = {
+  plugins: [
+    ...prodPlugin
+  ],
+}
+```
 
 [▲ 回顶部](#top)
