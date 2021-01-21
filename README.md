@@ -5,7 +5,7 @@
 ### 启动项目
 
 ```
-git clone git@github.com:Gintangible/vue-common-cli.git
+git clone git@github.com:Gintangible/vue-common-template.git
 
 cd vue-h5-template
 
