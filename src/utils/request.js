@@ -1,9 +1,5 @@
 import axios from "axios";
-<<<<<<< HEAD
-=======
-import { Toast } from 'vant';
 import JSONbig from 'json-bigint';
->>>>>>> fc1b486... 对request 进行调整，并添加json-bigint依赖
 import config from '@/config';
 
 const jsonParser = JSONbig({
@@ -43,7 +39,7 @@ request.interceptors.request.use(
 // respone拦截器
 request.interceptors.response.use(
   (response) => {
-    //clear loading
+    // clear loading
     if (response && response.data) {
       return jsonParser.parse(response.request.responseText);
     } else {

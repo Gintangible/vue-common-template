@@ -1,35 +1,27 @@
 <template>
   <div class="container">
     <div class="content">
-      <van-image :src="centerPicture" />
+      <img :src="centerPicture" />
       <div class="yi">
         咦…
       </div>
       <div class="text">
         正在努力升级系统<br> 稍等一下下，马上回来
       </div>
-      <van-button
-        :loading="loading"
+      <div
         class="van-btn"
-        size="small"
-        type="info"
         @click="goHome"
       >
         回到首页
-      </van-button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { Button, Image as VanImage } from 'vant';
-
 export default {
   name: 'Error404',
-  components: {
-    [VanImage.name]: VanImage,
-    [Button.name]: Button,
-  },
+  components: {},
   data() {
     return {
       loading: false,

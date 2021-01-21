@@ -1,30 +1,57 @@
 <template>
   <div class="home-container">
-    <div class="home-title">主页</div>
+    <div class="home-title">
+      主页 {{ user && user.IDCard }}
+    </div>
     <div class="router-list">
       <router-link
         v-for="(route, index) in routes"
         :key="index"
         class="router-item"
         :to="{ name: route.name }"
-        >{{route.name}}</router-link
+        >{{ route.title }}</router-link
       >
+      <router-link class="router-item" to="/bar">错误页面</router-link>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex';
+import appApi from 'api/app';
+
 export default {
   name: 'Layout',
+  computed: {
+    ...mapState({
+      user: (state) => state.user,
+    }),
+  },
   data() {
     return {
-      routes: [{
-        name: 'Icons',
-        title: '跳转icons'
-      }],
+      routes: [
+        {
+          name: 'Test',
+          title: '跳转test',
+        },
+      ],
     };
   },
   components: {},
+  async created() {
+    if (this.user) {
+      console.log('gxw get vuex-persist user ', this.user);
+      return;
+    }
+    const user = await appApi.getUserInfo();
+    console.log('gxw  get user: ', user);
+    this.setUser(user);
+  },
+  methods: {
+    ...mapMutations({
+      setUser: 'SET_USER',
+    }),
+  },
 };
 </script>
 <style lang='scss' scoped>
@@ -34,7 +61,6 @@ export default {
 }
 .router-item {
   display: block;
-  font-size: rem(16);
   @include lineHeight(rem(24));
 }
 </style>

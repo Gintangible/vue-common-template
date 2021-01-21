@@ -1,7 +1,7 @@
 import Mock from 'mockjs';
-import userAPI from './user';
+import { user } from './user';
 
 // User
-Mock.mock(/api/, 'get', userAPI.api);
+Mock.mock('/getUserInfo', 'get', user);
 
 export default Mock;

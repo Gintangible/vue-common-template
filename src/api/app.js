@@ -3,8 +3,9 @@ import request from "@/utils/request";
 const appApi = {
   getUserInfo: () => {
     return request({
-      url: "/api",
+      url: "/getUserInfo",
       method: "get",
+      loading: true,
     });
   }
 };
