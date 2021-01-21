@@ -19,13 +19,10 @@ yarn serve
 - [x] [配置多环境变量](#env)
 - [x] [rem 适配](#rem)
 - [x] [eruda 移动端 log](#eruda)
-- [] [vantUI 按需加载](#vant)
 - [x] [Vuex 状态管理](#vuex)
 - [x] [Vue-router](#router)
 - [x] [Axios 封装及接口管理](#axios)
 - [x] [vue.config.js 配置](#vue_config)
-- [] [Eslint + Pettier 统一开发规范](#pettier)
-
 
 ### <span id="env">配置多环境变量</span>
 
