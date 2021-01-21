@@ -1,6 +1,6 @@
 // 生产环境配置
 module.exports = {
   debug: false,
-  baseUrl: 'https://prod.xxx.com',
-  baseApi: 'https://prod.xxx.com/api',
+  base_url: 'https://prod.xxx.com',
+  base_url_api: 'https://prod.xxx.com/api',
 }

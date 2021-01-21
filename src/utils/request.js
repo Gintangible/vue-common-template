@@ -3,19 +3,19 @@ import config from '@/config';
 
 // 创建axios实例
 const request = axios.create({
-  baseURL: config.api_base_url,
+  baseURL: config.base_url_api,
   timeout: config.request_timeout,
 });
 
 // request拦截器
 request.interceptors.request.use(
   (config) => {
-    // Do something before request is sent
+    // Do something before request sending
     return config;
   },
   (error) => {
     // Do something with request error
-    console.log("request: " + error); // for debug
+    console.log("request.error: " + error); // for debug
     return Promise.reject(error);
   }
 );
@@ -23,10 +23,11 @@ request.interceptors.request.use(
 // respone拦截器
 request.interceptors.response.use(
   (response) => {
+    // Do something for response
     return response.data;
   },
   (error) => {
-    console.log("response: " + error); // for debug
+    console.log("response.error: " + error); // for debug
     return Promise.reject(error);
   }
 );

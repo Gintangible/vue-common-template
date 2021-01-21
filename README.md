@@ -23,6 +23,7 @@ yarn serve
 - [x] [Vuex 状态管理](#vuex)
 - [x] [Vue-router](#router)
 - [] [Axios 封装及接口管理](#axios)
+- [] [vue.config.js 配置](#vue_config)
 - [] [Eslint + Pettier 统一开发规范](#pettier)
 
 
@@ -209,6 +210,11 @@ new Vue({
 
 [Vue-router 官方文档](https://router.vuejs.org/zh/api/)
 [nprogress 文档](https://github.com/rstacruz/nprogress)
+
+注意：如果路由使用 `history` 模式，`vue.config.js` 中的 `publicPath` 要做对应的修改。
+
+前往:[vue.config.js 配置](#vue_config)
+
 ##### 安装
 
 ```
@@ -269,3 +275,78 @@ export default router;
 
 [▲ 回顶部](#top)
 
+### <span id="axios">Axios 封装及接口管理</span>
+
+在 `utils/request.js` 封装 `axios`, 后续根据后台接口进行调整。
+
+```javascript
+import axios from "axios";
+import config from '@/config';
+
+// 创建axios实例
+const request = axios.create({
+  baseURL: config.base_url_api,
+  timeout: config.request_timeout,
+});
+
+// request拦截器
+request.interceptors.request.use(
+  (config) => {
+    // Do something before request sending
+    return config;
+  },
+  (error) => {
+    // Do something with request error
+    console.log("request.error: " + error); // for debug
+    return Promise.reject(error);
+  }
+);
+
+// respone拦截器
+request.interceptors.response.use(
+  (response) => {
+    // Do something for response
+    return response.data;
+  },
+  (error) => {
+    console.log("response.error: " + error); // for debug
+    return Promise.reject(error);
+  }
+);
+
+export default request;
+```
+
+##### 接口管理
+
+在 `src/api` 文件夹下统一管理接口。
+
+> 示例：
+
+```javascript
+import request from "@/utils/request";
+
+const appApi = {
+  getUserInfo: () => {
+    return request({
+      url: "/api",
+      method: "get",
+    });
+  }
+};
+
+export default appApi;
+```
+
+> 调用
+
+```javascript
+import appApi from "@/api/app";
+...
+appApi.getUserInfo()
+  .then(() => {});
+
+// await appApi.getUserInfo()
+```
+
+[▲ 回顶部](#top)

@@ -1,10 +1,12 @@
 import request from "@/utils/request";
 
-// 账号退出
-const logout = () =>
-  request({
-    url: "/api",
-    method: "get",
-  });
+const appApi = {
+  getUserInfo: () => {
+    return request({
+      url: "/api",
+      method: "get",
+    });
+  }
+};
 
-export { logout };
+export default appApi;

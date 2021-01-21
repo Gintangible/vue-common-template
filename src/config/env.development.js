@@ -1,6 +1,6 @@
 // 本地环境配置
 module.exports = {
   debug: true,
-  baseUrl: 'https://test.xxx.com',
-  baseApi: 'https://test.xxx.com/api',
+  base_url: 'https://test.xxx.com',
+  base_url_api: 'https://test.xxx.com/api',
 }
