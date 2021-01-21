@@ -5,6 +5,7 @@ const appApi = {
     return request({
       url: "/api",
       method: "get",
+      loading: false,
     });
   }
 };

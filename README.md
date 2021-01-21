@@ -19,13 +19,11 @@ yarn serve
 - [x] [配置多环境变量](#env)
 - [x] [rem 适配](#rem)
 - [x] [eruda 移动端 log](#eruda)
-- [] [vantUI 按需加载](#vant)
+- [x] [vantUI 按需加载](#vant)
 - [x] [Vuex 状态管理](#vuex)
 - [x] [Vue-router](#router)
 - [x] [Axios 封装及接口管理](#axios)
-- [x] [vue.config.js 配置](#vue_config)
-- [] [Eslint + Pettier 统一开发规范](#pettier)
-
+- [x] [vue.config.js 及相关配置](#vue_config)
 
 ### <span id="env">配置多环境变量</span>
 
@@ -123,6 +121,17 @@ if (process.env.NODE_ENV !== 'production') {
   //new VConsole();
 }
 ```
+### <span id="vant">vantUI 按需加载</span>
+
+[Vant 自动按需引入组件](https://vant-contrib.gitee.io/vant/#/zh-CN/quickstart)
+##### 安装
+
+```
+yarn add vant
+yarn add babel-plugin-import --dev
+```
+
+[▲ 回顶部](#top)
 
 ### <span id="vuex">Vuex 状态管理</span>
 
