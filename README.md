@@ -286,9 +286,9 @@ export default router;
 
 ### <span id="axios">Axios 封装及接口管理</span>
 
-在 `utils/request.js` 封装 `axios`, 后续根据后台接口进行调整。
+在 `utils/request.js` 封装 `axios`, <span style="color: #f00;">后续根据后台接口进行调整</span>。
 
-> 基础设置：
+> 基础设置如下：
 
 ```javascript
 import axios from "axios";
@@ -327,6 +327,7 @@ request.interceptors.response.use(
 
 export default request;
 ```
+
 [▲ 回顶部](#top)
 
 ##### 接口管理

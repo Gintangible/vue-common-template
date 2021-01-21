@@ -1,6 +1,11 @@
 import axios from "axios";
 import { Toast } from 'vant';
+import JSONbig from 'json-bigint';
 import config from '@/config';
+
+const jsonParser = JSONbig({
+  storeAsString: true,  // 把64位整数存储为字符串
+});
 
 // 创建axios实例
 const request = axios.create({
@@ -17,6 +22,13 @@ request.interceptors.request.use(
         forbidClick: true
       });
     }
+    if ((config.method === 'get')
+        || (config.method === 'delete')
+        || (config.method === 'post' && !config.data)) {
+      //  给data赋值以绕过if判断
+      config.data = true;
+    }
+    config.headers['Content-Type'] = 'application/json;charset=UTF-8';
     // Do something before request sending
     return config;
   },
@@ -31,8 +43,13 @@ request.interceptors.request.use(
 request.interceptors.response.use(
   (response) => {
     Toast.clear();
+    if (response && response.data) {
+      return jsonParser.parse(response.request.responseText);
+    } else {
+      return null;
+    }
     // Do something for response
-    return response.data;
+    // return response.data;
   },
   (error) => {
     Toast.clear();
