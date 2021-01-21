@@ -20,8 +20,8 @@ yarn serve
 - [x] [rem 适配](#rem)
 - [x] [eruda 移动端 log](#eruda)
 - [] [vantUI 按需加载](#vant)
-- [] [Vuex 状态管理](#vuex)
-- [] [Vue-router](#router)
+- [x] [Vuex 状态管理](#vuex)
+- [x] [Vue-router](#router)
 - [] [Axios 封装及接口管理](#axios)
 - [] [Eslint + Pettier 统一开发规范](#pettier)
 
@@ -128,7 +128,7 @@ if (process.env.NODE_ENV !== 'production') {
 [Vuex 官方文档](https://vuex.vuejs.org/zh/)
 [vuex-persist 文档](https://github.com/championswimmer/vuex-persist)
 
-##### 安装命令
+##### 安装
 
 ```
 yarn add vuex
@@ -136,7 +136,7 @@ yarn add vuex-persist
 ```
 使用 `vuex` 保存数据，如果刷新页面的话，会把`store` 中的数据清掉，故 `vuex-persist` 做持久化储存。
 
-##### 目录结构
+##### 目录结构（详见stroe 目录）
 
 ```bash
 ├── store
@@ -153,6 +153,7 @@ yarn add vuex-persist
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
+
 new Vue({
   el: '#app',
   store,
@@ -205,3 +206,66 @@ new Vue({
 [▲ 回顶部](#top)
 
 ### <span id="router">Vue-router</span>
+
+[Vue-router 官方文档](https://router.vuejs.org/zh/api/)
+[nprogress 文档](https://github.com/rstacruz/nprogress)
+##### 安装
+
+```
+yarn add vue-router
+yarn add nprogress
+```
+
+> router/index.js (详见 `router` 目录)
+
+```javascript
+import Vue from 'vue';
+import Router from 'vue-router';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css'
+
+Vue.use(Router);
+// 首页无需懒加载
+import Home from 'views/Home/home';
+
+const routes = [
+    {
+        path: '/',
+        name: 'Home',
+        component: Home,
+    },
+    {
+        path: '*',
+        name: 'Error404',
+        // 路由懒加载
+        component: () => import('views/error404.vue'),
+    }
+];
+
+const router = new Router({
+    routes,
+});
+
+router.beforeEach((to, from, next) => {
+    NProgress.start();
+    if (next) {
+        next();
+    }
+});
+
+router.afterEach((to, from, next) => {
+    NProgress.done();
+    if (next) {
+        next();
+    }
+});
+
+export default router;
+```
+
+然后在 `main.js` 中引入。
+
+更多：[动态路由](https://juejin.cn/post/6844903478880370701)
+
+[▲ 回顶部](#top)
+
