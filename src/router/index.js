@@ -14,15 +14,15 @@ const routes = [
         component: Home,
     },
     {
-      path: '/icons',
-      name: 'Icons',
-      component: () => import('views/icon'),
+      path: '/test',
+      name: 'Test',
+      component: () => import('views/test.vue'),
     },
     {
         path: '*',
         name: 'Error404',
         component: () => import('views/error404.vue'),
-    }
+    },
 ];
 
 const router = new Router({
