@@ -23,7 +23,7 @@ yarn serve
 - [x] [Vuex 状态管理](#vuex)
 - [x] [Vue-router](#router)
 - [x] [Axios 封装及接口管理](#axios)
-- [] [vue.config.js 配置](#vue_config)
+- [x] [vue.config.js 配置](#vue_config)
 - [] [Eslint + Pettier 统一开发规范](#pettier)
 
 
@@ -352,3 +352,17 @@ appApi.getUserInfo()
 ```
 
 [▲ 回顶部](#top)
+
+### <span id="vue_config">vue.config.js 配置</span>
+
+##### vue.config.js
+
+见 `vue.config.js` 文件。
+
+##### babel.config.js
+
+见 `babel.config.js` 文件。
+
+##### .eslintrc.js
+
+见 `.eslintrc.js` 文件。
