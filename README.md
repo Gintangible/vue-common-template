@@ -318,6 +318,7 @@ request.interceptors.response.use(
 
 export default request;
 ```
+[▲ 回顶部](#top)
 
 ##### 接口管理
 
@@ -366,3 +367,11 @@ appApi.getUserInfo()
 ##### .eslintrc.js
 
 见 `.eslintrc.js` 文件。
+
+##### .editorconfig
+
+在 `vscode` 里面安装 `EditorConfig`， 配置见 `.editorconfig` 文件。
+
+**配合代码检查工具使用，比如说：ESLint或TSLint，统一代码风格。**
+
+[▲ 回顶部](#top)
