@@ -22,7 +22,7 @@ yarn serve
 - [] [vantUI 按需加载](#vant)
 - [x] [Vuex 状态管理](#vuex)
 - [x] [Vue-router](#router)
-- [] [Axios 封装及接口管理](#axios)
+- [x] [Axios 封装及接口管理](#axios)
 - [] [vue.config.js 配置](#vue_config)
 - [] [Eslint + Pettier 统一开发规范](#pettier)
 
@@ -278,6 +278,8 @@ export default router;
 ### <span id="axios">Axios 封装及接口管理</span>
 
 在 `utils/request.js` 封装 `axios`, 后续根据后台接口进行调整。
+
+> 基础设置：
 
 ```javascript
 import axios from "axios";
