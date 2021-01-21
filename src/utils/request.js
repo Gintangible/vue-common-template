@@ -1,5 +1,14 @@
 import axios from "axios";
+<<<<<<< HEAD
+=======
+import { Toast } from 'vant';
+import JSONbig from 'json-bigint';
+>>>>>>> fc1b486... 对request 进行调整，并添加json-bigint依赖
 import config from '@/config';
+
+const jsonParser = JSONbig({
+  storeAsString: true,  // 把64位整数存储为字符串
+});
 
 // 创建axios实例
 const request = axios.create({
@@ -10,6 +19,17 @@ const request = axios.create({
 // request拦截器
 request.interceptors.request.use(
   (config) => {
+    // 默认不开启Toast loading;
+    if (config.loading) {
+      // loading
+    }
+    if ((config.method === 'get')
+        || (config.method === 'delete')
+        || (config.method === 'post' && !config.data)) {
+      //  给data赋值以绕过if判断
+      config.data = true;
+    }
+    config.headers['Content-Type'] = 'application/json;charset=UTF-8';
     // Do something before request sending
     return config;
   },
@@ -23,8 +43,14 @@ request.interceptors.request.use(
 // respone拦截器
 request.interceptors.response.use(
   (response) => {
+    //clear loading
+    if (response && response.data) {
+      return jsonParser.parse(response.request.responseText);
+    } else {
+      return null;
+    }
     // Do something for response
-    return response.data;
+    // return response.data;
   },
   (error) => {
     console.log("response.error: " + error); // for debug
