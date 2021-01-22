@@ -7,8 +7,9 @@ module.exports = {
     node: true,
   },
   extends: [
-    'plugin:vue/base',
-    'eslint:recommended',
+    'airbnb-base',
+    // 校验vue组件，需要安装 eslint-plugin-vue
+    'plugin:vue/recommended',
   ],
   rules: {
     // 强制类方法使用 this
@@ -17,6 +18,17 @@ module.exports = {
     'comma-dangle': ['error', 'only-multiline'],
     // 要求 require() 出现在顶层模块作用域中
     'global-require': 'off',
+    // https://github.com/benmosher/eslint-plugin-import
+    'import/default': 'error',
+    'import/export': 'error',
+    'import/extensions': 'off',
+    'import/first': 'off',
+    'import/named': 'error',
+    'import/namespace': 'error',
+    'import/no-extraneous-dependencies': 'off',
+    'import/no-named-as-default': 'off',
+    'import/no-unresolved': 'off',
+    'import/prefer-default-export': 'off',
     // 强制行的最大长度
     'max-len': ['warn', {
       code: 120,
@@ -39,7 +51,7 @@ module.exports = {
     // 禁止使用 new 以避免产生副作用
     'no-new': 'off',
     // 不允许空格和 tab 混合缩进
-    "no-mixed-spaces-and-tabs": 2,
+    'no-mixed-spaces-and-tabs': 2,
     // 禁止使用多个空格
     'no-multi-spaces': ['error', { ignoreEOLComments: true }],
     // 禁止对 function 的参数进行重新赋值

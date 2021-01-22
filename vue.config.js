@@ -11,7 +11,7 @@ module.exports = {
   // 署应用包时的基本 URL。history模式使用
   // publicPath: '/app/',
   // 构建文件的目录
-  outputDir: process.env.NODE_ENV === "stage" ? 'stage' : 'dist',
+  outputDir: process.env.NODE_ENV === 'stage' ? 'stage' : 'dist',
   assetsDir: 'static',
   // 生产环境构建生成 source map
   productionSourceMap: false,

@@ -377,7 +377,7 @@ appApi.getUserInfo()
 
 ##### .eslintrc.js
 
-见 `.eslintrc.js` 文件。
+见 `.eslintrc.js` 文件。[eslint 中文文档](http://eslint.cn/docs/rules/)
 
 ##### .editorconfig
 

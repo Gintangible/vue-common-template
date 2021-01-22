@@ -9,9 +9,15 @@
         :key="index"
         class="router-item"
         :to="{ name: route.name }"
-        >{{ route.title }}</router-link
       >
-      <router-link class="router-item" to="/bar">错误页面</router-link>
+        {{ route.title }}
+      </router-link>
+      <router-link
+        class="router-item"
+        to="/bar"
+      >
+        错误页面
+      </router-link>
     </div>
   </div>
 </template>
@@ -22,11 +28,6 @@ import appApi from 'api/app';
 
 export default {
   name: 'Layout',
-  computed: {
-    ...mapState({
-      user: (state) => state.user,
-    }),
-  },
   data() {
     return {
       routes: [
@@ -37,7 +38,11 @@ export default {
       ],
     };
   },
-  components: {},
+  computed: {
+    ...mapState({
+      user: (state) => state.user,
+    }),
+  },
   async created() {
     if (this.user) {
       console.log('gxw get vuex-persist user ', this.user);

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import { Toast } from 'vant';
 import JSONbig from 'json-bigint';
 import config from '@/config';
@@ -34,7 +34,7 @@ request.interceptors.request.use(
   },
   (error) => {
     // Do something with request error
-    console.log("request.error: " + error); // for debug
+    console.log(`request.error: ${error}`); // for debug
     return Promise.reject(error);
   }
 );
@@ -53,7 +53,7 @@ request.interceptors.response.use(
   },
   (error) => {
     Toast.clear();
-    console.log("response.error: " + error); // for debug
+    console.log(`response.error: ${error}`); // for debug
     return Promise.reject(error);
   }
 );
