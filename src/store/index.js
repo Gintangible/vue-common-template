@@ -4,7 +4,6 @@ import vuexLocal from './persist';
 import getters from './getters';
 import app from './modules/app';
 
-
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
@@ -45,7 +44,7 @@ const store = new Vuex.Store({
   },
 
   actions: {
-    setUserAsync({commit, state}, user) {
+    setUserAsync({ commit, state }, user) {
       console.log(state);
       commit('SET_USER', user);
     }

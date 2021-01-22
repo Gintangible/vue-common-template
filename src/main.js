@@ -2,11 +2,11 @@ import Vue from 'vue';
 import 'amfe-flexible';
 import 'normalize.css/normalize.css';
 import '@/styles/scrollbar.css';
+import fastclick from 'fastclick';
+import config from '@/config';
 import App from './App.vue';
 import router from './router/index';
 import store from './store';
-import fastclick from 'fastclick';
-import config from '@/config';
 
 fastclick.attach(document.body);         // 解决移动端事件300ms延时
 
@@ -25,5 +25,5 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: (h) => h(App)
 }).$mount('#app');

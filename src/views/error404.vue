@@ -6,7 +6,8 @@
         咦…
       </div>
       <div class="text">
-        正在努力升级系统<br> 稍等一下下，马上回来
+        正在努力升级系统<br>
+        稍等一下下，马上回来
       </div>
       <div
         class="van-btn"
@@ -32,8 +33,8 @@ export default {
     goHome() {
       this.loading = true;
       this.$router.push({ name: 'Home' });
-    }
-  }
+    },
+  },
 };
 </script>
 
