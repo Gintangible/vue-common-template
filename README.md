@@ -58,7 +58,7 @@ NODE_ENV=development
 
 [▲ 回顶部](#top)
 
-### <span id="rem">rem 适配</spn>
+### <span id="rem">rem 适配</span>
 
 - `postcss-pxtorem` 是一款 `postcss` 插件，用于将单位转化为 `rem`
 - `amfe-flexible` 用于设置 rem 基准值
