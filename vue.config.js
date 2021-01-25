@@ -5,13 +5,15 @@ function resolve(dir) {
   return path.join(__dirname, dir);
 }
 
+const OUTPUT_DIR = require('./package.json').name;
+
 module.exports = {
   // 署应用包时的基本 URL。 hash 模式使用
   publicPath: './',
   // 署应用包时的基本 URL。history模式使用
   // publicPath: '/app/',
   // 构建文件的目录
-  outputDir: process.env.NODE_ENV === 'stage' ? 'stage' : 'dist',
+  outputDir: OUTPUT_DIR,
   assetsDir: 'static',
   // 生产环境构建生成 source map
   productionSourceMap: false,
