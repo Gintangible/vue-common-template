@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="content">
-      <img :src="centerPicture" />
+      <img :src="centerPicture">
       <div class="yi">
         咦…
       </div>

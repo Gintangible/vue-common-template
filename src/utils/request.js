@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import JSONbig from 'json-bigint';
 import config from '@/config';
 
@@ -49,7 +49,7 @@ request.interceptors.response.use(
     // return response.data;
   },
   (error) => {
-    console.log("response.error: " + error); // for debug
+    console.log(`response.error: ${error}`); // for debug
     return Promise.reject(error);
   }
 );
