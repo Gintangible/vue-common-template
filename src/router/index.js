@@ -30,7 +30,7 @@ const router = new Router({
   routes,
 });
 
-const WHITE_LIST = ['Login'];
+const WHITE_LIST = ['Login', 'Home'];
 
 router.beforeEach((to, from, next) => {
   NProgress.start();
