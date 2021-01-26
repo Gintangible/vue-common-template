@@ -1,18 +1,12 @@
 <template>
   <div class="container">
-    <div
-      class="content"
-      lock-scroll
-      :show="show"
-      @click="show = false"
-    >
+    <div class="content">
       <van-image :src="centerPicture" />
       <div class="yi">
         咦…
       </div>
       <div class="text">
-        正在努力升级系统<br>
-        稍等一下下，马上回来
+        正在努力升级系统<br> 稍等一下下，马上回来
       </div>
       <van-button
         :loading="loading"
