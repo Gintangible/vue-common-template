@@ -2,9 +2,6 @@
   <div class="container">
     <div class="content">
       <img :src="centerPicture">
-      <div class="yi">
-        咦…
-      </div>
       <div class="text">
         正在努力升级系统<br>
         稍等一下下，马上回来
