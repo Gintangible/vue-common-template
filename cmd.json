@@ -1,0 +1,14 @@
+{
+  "stage": {
+    "filename": "dist",
+    "buildCmd": "yarn build:stage",
+    "outLinuxURL": "/mnt/d/temp/development/",
+    "deployCmd": "scp -P xxxx -r "
+  },
+  "prod": {
+    "filename": "dist",
+    "buildCmd": "yarn build",
+    "outLinuxURL": "/mnt/d/temp/prod/",
+    "deployCmd": "scp -P xxxx -r "
+  }
+}
