@@ -1,12 +1,19 @@
+# 本地目录
+localfile="dist"
 # 项目目录
-filename="vue-common-template"
+filename="serverDir"
 # 打包命令
 buildCmd="yarn build:stage"
+# 发布命令
+deployCmd="scp -P 8080 -r $localfile/* guxw@xx.xxx.cn:/data/nginx/html/$filename/"
 
+
+# 生产是发布到OSS上的, 所以这部分不用到
 function getVar() {
   case $1 in
     'prod')
         buildCmd="yarn build"
+        deployCmd="scp -P 8080 -r $localfile/*  guxw@xx.xxx.cn:/data/nginx/html/$filename/"
         ;;
     *)
         buildCmd="yarn build:stage"
@@ -15,8 +22,8 @@ function getVar() {
 
 getVar $1
 
-yarn install
+yarn
 if [ $filename ] && $buildCmd; then
-echo $filename;
-  # scp -P xxxx -r $filename/*  NGINX/$filename/;
+  echo $deployCmd;
+  $deployCmd;
 fi

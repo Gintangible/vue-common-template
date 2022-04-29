@@ -22,9 +22,7 @@ request.interceptors.request.use(
         forbidClick: true
       });
     }
-    if ((config.method === 'get')
-        || (config.method === 'delete')
-        || (config.method === 'post' && !config.data)) {
+    if (['get', 'delete', 'post'].includes(config.method) && !config.data) {
       //  给data赋值以绕过if判断
       config.data = true;
     }

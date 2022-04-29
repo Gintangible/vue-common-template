@@ -5,9 +5,6 @@ function resolve(dir) {
   return path.join(__dirname, dir);
 }
 
-// 项目的名称
-const APP_TITLE = process.env.npm_package_name;
-
 module.exports = {
   // 署应用包时的基本 URL。 hash 模式使用
   publicPath: './',
@@ -22,28 +19,32 @@ module.exports = {
   filenameHashing: true,
   // 高级设置, 控制其内部配置
   chainWebpack: (config) => {
-    // 设置路径别名
-    config.resolve.alias
-      .set('@', resolve('src'))
-      .set('views', resolve('src/views'))
-      .set('api', resolve('src/api'))
-      .set('assets', resolve('src/assets'))
-      .set('components', resolve('src/components'));
-
     config.plugin('define').tap((definitions) => {
       const args = definitions[0]['process.env'];
       args.VUE_APP_APP_NAME = `"${process.env.npm_package_name}"`;
       args.VUE_APP_APP_VERSION = `"${process.env.npm_package_version}"`;
       return definitions;
     });
-  },
-  // 简单配置
-  configureWebpack: (config) => {
-    // 用于 HTML 的title
-    config.name = APP_TITLE;
     if (process.env.use_analyzer) {
       config.plugins.push(new BundleAnalyzerPlugin());
     }
+  },
+  // 简单配置
+  configureWebpack: {
+    name: process.env.npm_package_name,
+    resolve: {
+      // 设置路径别名
+      alias: {
+        '@': resolve('src'),
+        views: resolve('src/views'),
+        api: resolve('src/api'),
+        assets: resolve('src/assets'),
+        components: resolve('src/components'),
+      }
+    },
+    output: {
+      sourceMapFilename: 'sourceMap/[name].[chunkhash].js.map',
+    },
   },
   css: {
     sourceMap: false,

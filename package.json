@@ -1,11 +1,12 @@
 {
   "name": "vue-common-template",
+  "title": "通用项目",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "serve:prod": "vue-cli-service serve --mode production",
-    "build:stage": "cross-env NODE_ENV=stage vue-cli-service build --mode stage",
+    "build:stage": "cross-env NODE_ENV=stage vue-cli-service build",
     "build": "vue-cli-service build --mode production",
     "analyze": "use_analyzer=true vue-cli-service build --mode production",
     "analyze:stage": "use_analyzer=true vue-cli-service build --mode stage",
@@ -15,7 +16,6 @@
   "dependencies": {
     "amfe-flexible": "^2.2.1",
     "axios": "^0.21.1",
-    "es-check": "^5.1.4",
     "json-bigint": "^1.0.0",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",

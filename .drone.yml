@@ -1,0 +1,55 @@
+kind: pipeline
+type: docker
+name: 项目名称
+
+volumes:
+  # 缓存目录名
+  - name: cache
+    host:
+      # 目录映射到宿主机的路径
+      path: /data/cache/项目名称/node_modules
+
+steps:
+  # 当前步骤的名字
+  - name: build-stage
+    # 该步骤依赖的容器镜像的名字
+    image: njzhyl/node:v1.0
+    # 将容器内目录挂载到宿主机
+    volumes:
+    # 构建缓存
+      - name: cache
+        path: /drone/src/node_modules
+    # 在当前容器执行的指令
+    commands:
+      # 打包
+      - echo "build-stage"
+      - yarn install
+      - yarn build:stage
+      # 使用的是服务器账号
+      - scp -o "StrictHostKeyChecking no" -r 本地项目目录 服务器地址
+      - echo "build-finish"
+    # 当前步骤触发的条件
+    when:
+      event:
+        - promote
+      target:
+        - stage
+
+  - name: build-prod
+    image: njzhyl/node:v1.0
+    volumes:
+      - name: cache
+        path: /drone/src/node_modules
+    commands:
+      # 打包
+      - echo "build-production"
+      - yarn install
+      - yarn build:prod
+      # 不进行公钥确认
+      - scp -o "StrictHostKeyChecking no" -r 本地项目目录 服务器地址
+      - echo "build-finish"
+    when:
+      event:
+        - promote
+      target:
+        - production
