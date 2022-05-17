@@ -16,10 +16,12 @@ if (process.env.NODE_ENV !== 'production') {
   });
   const eruda = require('eruda');
   eruda.init();
-}
-// 引入mockjs
-if (config.mocking) {
-  require('./mock');
+  // 引入mockjs
+  if (config.mocking) {
+    require('./mock');
+  }
+} else {
+  console.log(`${config.app_name} ${config.app_version}`);
 }
 
 Vue.config.productionTip = false;

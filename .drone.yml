@@ -23,7 +23,7 @@ steps:
     commands:
       # 打包
       - echo "build-stage"
-      - yarn install
+      - yarn
       - yarn build:stage
       # 使用的是服务器账号
       - scp -o "StrictHostKeyChecking no" -r 本地项目目录 服务器地址
@@ -43,7 +43,7 @@ steps:
     commands:
       # 打包
       - echo "build-production"
-      - yarn install
+      - yarn
       - yarn build:prod
       # 不进行公钥确认
       - scp -o "StrictHostKeyChecking no" -r 本地项目目录 服务器地址

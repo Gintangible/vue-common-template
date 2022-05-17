@@ -22,7 +22,7 @@ request.interceptors.request.use(
         forbidClick: true
       });
     }
-    if (['get', 'delete', 'post'].includes(config.method) && !config.data) {
+    if (['get', 'delete', 'post', 'put'].includes(config.method) && !config.data) {
       //  给data赋值以绕过if判断
       config.data = true;
     }
