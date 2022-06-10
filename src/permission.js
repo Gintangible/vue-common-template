@@ -14,9 +14,7 @@ router.beforeEach(async (to, from, next) => {
   NProgress.start();
 
   // set page title
-  if (to.meta.title) {
-    setPageTitle(setPageTitle);
-  }
+  setPageTitle(to.meta.title);
 
   // determine whether the user has logged in
   const hasToken = store.getters.token;

@@ -1,5 +1,6 @@
 // 通用配置
 module.exports = {
+  title: '通用模板-title',
   // 运行环境
   node_env: process.env.NODE_ENV,
   app_name: process.env.VUE_APP_APP_NAME,
