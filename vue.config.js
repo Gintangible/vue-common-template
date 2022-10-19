@@ -21,7 +21,6 @@ module.exports = {
   chainWebpack: (config) => {
     config.plugin('define').tap((definitions) => {
       const args = definitions[0]['process.env'];
-      args.VUE_APP_APP_NAME = `"${process.env.npm_package_name}"`;
       args.VUE_APP_APP_VERSION = `"${process.env.npm_package_version}"`;
       return definitions;
     });

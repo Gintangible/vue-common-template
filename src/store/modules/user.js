@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import userApi from '@/api/user';
 
 const state = {
@@ -5,14 +6,16 @@ const state = {
   user: '',
 
   // 用户token
-  token: '',
+  token: Cookies.get('token'),
 };
 const mutations = {
   SET_USER(state, user) {
     state.user = user;
   },
   SET_TOKEN(state, token) {
-    state.token = token;
+    Cookies.set('token', token, {
+      expires: 7,
+    });
   }
 };
 const actions = {

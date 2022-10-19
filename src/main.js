@@ -12,7 +12,7 @@ import '@/permission';
 if (process.env.NODE_ENV !== 'production') {
   Dialog.alert({
     title: '注意',
-    message: `您正在使用${config.app_name} ${config.app_version}测试版`,
+    message: `您正在使用${config.title} ${config.app_version}测试版`,
   });
   const eruda = require('eruda');
   eruda.init();
@@ -21,7 +21,7 @@ if (process.env.NODE_ENV !== 'production') {
     require('./mock');
   }
 } else {
-  console.log(`${config.app_name} ${config.app_version}`);
+  console.log(`${config.title} ${config.app_version}`);
 }
 
 Vue.config.productionTip = false;

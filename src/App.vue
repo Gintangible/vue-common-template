@@ -7,7 +7,7 @@
 export default {
   name: 'App',
   created() {
-    this.$store.commit('init', { root: true });
+    this.$store.commit('INIT');
   },
 };
 </script>

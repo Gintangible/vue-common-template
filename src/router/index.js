@@ -3,7 +3,7 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-import Home from 'views/home/home';
+import Home from 'views/home/index.vue';
 
 const routes = [
   {
@@ -14,7 +14,7 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('views/login'),
+    component: () => import('views/login/index.vue'),
   },
   {
     path: '/test',

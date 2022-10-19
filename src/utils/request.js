@@ -10,7 +10,8 @@ const jsonParser = JSONbig({
 // 创建axios实例
 const request = axios.create({
   baseURL: config.base_url_api,
-  timeout: config.request_timeout,
+  // HTTP请求超时时间，单位为毫秒，默认值为5分钟
+  timeout: 5 * 60 * 1000,
 });
 
 // request拦截器

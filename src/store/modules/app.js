@@ -1,0 +1,38 @@
+import UUID from 'uuidjs';
+import config from '@/config';
+
+const state = {
+  // UUID
+  udid: '',
+};
+
+const mutations = {
+  INIT(state) {
+    console.info('utils.initStateWithSearch');
+    /* eslint-disable */
+    let args = location.search;
+    /* eslint-enable */
+    if (!args) {
+      console.warn('No query string arguments found.');
+      return;
+    } else {
+      args = JSON.parse(args.slice(1));
+    }
+    console.debug('args = ', args);
+    // 当前渠道来源
+    state.source = args.source || config.default_source;
+
+    if (!state.udid) {
+      state.udid = UUID.generate();
+    }
+  },
+};
+
+const actions = {};
+
+export default {
+  namespaced: true,
+  state,
+  mutations,
+  actions
+};

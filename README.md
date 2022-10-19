@@ -46,8 +46,6 @@ NODE_ENV=development
 
 `.env.stage` 、`.env.production` 类似 `.env.development`。在这里只定义了基础的 `VUE_APP_ENV`, 其他变量统一放在 `src/config/env.*.js` 中进行管理。（**修改起来方便，不需要重启项目，符合开发习惯**。）
 
-另外，在 `./src/settings.js` 中可以设置一些变量，用于在 `webpack` 编译引入，如项目的title等。
-
 [▲ 回顶部](#top)
 
 ### <span id="rem">rem 适配</span>
@@ -291,7 +289,7 @@ import config from '@/config';
 // 创建axios实例
 const request = axios.create({
   baseURL: config.base_url_api,
-  timeout: config.request_timeout,
+  timeout: 5 * 60 * 1000,
 });
 
 // request拦截器
