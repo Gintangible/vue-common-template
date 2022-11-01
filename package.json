@@ -6,9 +6,9 @@
     "serve": "vue-cli-service serve",
     "serve:prod": "vue-cli-service serve --mode production",
     "build:stage": "cross-env NODE_ENV=stage vue-cli-service build",
-    "build": "vue-cli-service build --mode production",
-    "analyze": "use_analyzer=true vue-cli-service build --mode production",
-    "analyze:stage": "use_analyzer=true vue-cli-service build --mode stage",
+    "build": "vue-cli-service build",
+    "report": "vue-cli-service build --report",
+    "speed": "cross-env speedPlugin=true vue-cli-service build",
     "lint": "vue-cli-service lint",
     "eslint": "eslint --ext .js,.vue src"
   },
@@ -43,8 +43,8 @@
     "less-loader": "^7.0.2",
     "mockjs": "^1.0.1-beta3",
     "postcss-pxtorem": "^5.1.1",
+    "speed-measure-webpack-plugin": "^1.5.0",
     "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.0.0",
-    "webpack-bundle-analyzer": "^4.2.0"
+    "webpack": "^4.0.0"
   }
 }

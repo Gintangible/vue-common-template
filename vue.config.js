@@ -1,5 +1,5 @@
 const path = require('path');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 
 function resolve(dir) {
   return path.join(__dirname, dir);
@@ -24,8 +24,10 @@ module.exports = {
       args.VUE_APP_APP_VERSION = `"${process.env.npm_package_version}"`;
       return definitions;
     });
-    if (process.env.use_analyzer) {
-      config.plugins.push(new BundleAnalyzerPlugin());
+    if (process.env.speedPlugin) {
+      config.plugins.push(new SpeedMeasurePlugin({
+        outputFormat: 'human'
+      }));
     }
   },
   // 简单配置
