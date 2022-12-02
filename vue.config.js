@@ -1,9 +1,10 @@
-const path = require('path');
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
+const config = require('./src/config/common');
 
-function resolve(dir) {
-  return path.join(__dirname, dir);
-}
+// let SentryWebpackPlugin;
+// if (process.env.NODE_ENV === 'production') {
+//   SentryWebpackPlugin = require('@sentry/webpack-plugin');
+// }
 
 module.exports = {
   // 署应用包时的基本 URL。 hash 模式使用
@@ -18,34 +19,29 @@ module.exports = {
   // 文件名哈希
   filenameHashing: true,
   // 高级设置, 控制其内部配置
-  chainWebpack: (config) => {
-    config.plugin('define').tap((definitions) => {
-      const args = definitions[0]['process.env'];
-      args.VUE_APP_APP_VERSION = `"${process.env.npm_package_version}"`;
-      return definitions;
-    });
+  chainWebpack: () => {
+  },
+  // 简单配置
+  configureWebpack: (cfg) => {
+    cfg.name = config.title;
     if (process.env.speedPlugin) {
-      config.plugins.push(new SpeedMeasurePlugin({
+      cfg.plugins.push(new SpeedMeasurePlugin({
         outputFormat: 'human'
       }));
     }
-  },
-  // 简单配置
-  configureWebpack: {
-    name: process.env.npm_package_name,
-    resolve: {
-      // 设置路径别名
-      alias: {
-        '@': resolve('src'),
-        views: resolve('src/views'),
-        api: resolve('src/api'),
-        assets: resolve('src/assets'),
-        components: resolve('src/components'),
-      }
-    },
-    output: {
-      sourceMapFilename: 'sourceMap/[name].[chunkhash].js.map',
-    },
+    // if (process.env.NODE_ENV === 'production') {
+    //   cfg.devtool = 'source-map';
+    //   cfg.output.sourceMapFilename = 'sourceMap/[name].[chunkhash].js.map';
+    //   cfg.plugins.push(new SentryWebpackPlugin({
+    //     org: 'xxx',
+    //     project: config.project,
+    //     release: config.app_version,
+    //     url: 'https://sentry.njzhyl.cn',
+    //     authToken: '9af52016143d4bf4aff996150a0f7d9262650c840536475cb85c0e57334da58a',
+    //     include: './dist',
+    //     urlPrefix: '~/',
+    //   }));
+    // }
   },
   css: {
     sourceMap: false,
