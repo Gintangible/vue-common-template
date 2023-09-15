@@ -1,5 +1,6 @@
 import UUID from 'uuidjs';
 import config from '@/config';
+import getParsedSearch from '@/utils/get-parsed-search';
 
 const state = {
   // UUID
@@ -10,13 +11,11 @@ const mutations = {
   INIT(state) {
     console.info('utils.initStateWithSearch');
     /* eslint-disable */
-    let args = location.search;
+    let args = getParsedSearch();
     /* eslint-enable */
     if (!args) {
       console.warn('No query string arguments found.');
       return;
-    } else {
-      args = JSON.parse(args.slice(1));
     }
     console.debug('args = ', args);
     // 当前渠道来源
