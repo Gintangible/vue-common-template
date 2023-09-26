@@ -1,7 +1,9 @@
 import VuexPersistence from 'vuex-persist';
+import config from '@/config';
 
 // 自定义 VuexPresistence 对象。
 const vuexLocal = new VuexPersistence({
+  key: config.persistKey,
   storage: window.localStorage,                       // 使用浏览器的 localStorage 作为底层存储设备
   supportCircular: false,                             // 不支持循环自引用状态对象
   asyncStorage: false,                                // 不支持异步存储设备

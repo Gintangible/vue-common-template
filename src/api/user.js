@@ -1,10 +1,8 @@
 import request from '@/utils/request';
 
-const userApi = {
-  login: () => request({
+export function login() {
+  return request({
     url: '/getUserInfo',
     method: 'get',
-  })
-};
-
-export default userApi;
+  });
+}

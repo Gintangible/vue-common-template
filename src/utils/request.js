@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { Toast } from 'vant';
+import { Dialog } from 'vant';
 import JSONbig from 'json-bigint';
 import config from '@/config';
+import { showLoading, hideLoading } from './loading';
 
 const jsonParser = JSONbig({
   storeAsString: true,  // 把64位整数存储为字符串
@@ -19,9 +20,7 @@ request.interceptors.request.use(
   (config) => {
     // 默认不开启Toast loading;
     if (config.loading) {
-      Toast.loading({
-        forbidClick: true
-      });
+      showLoading();
     }
     if (['get', 'delete', 'post', 'put'].includes(config.method) && !config.data) {
       //  给data赋值以绕过if判断
@@ -41,18 +40,32 @@ request.interceptors.request.use(
 // respone拦截器
 request.interceptors.response.use(
   (response) => {
-    Toast.clear();
-    if (response && response.data) {
-      return jsonParser.parse(response.request.responseText);
-    } else {
-      return null;
+    if (response.config.loading) {
+      hideLoading();
     }
     // Do something for response
     // return response.data;
+    const { data } = response;
+    if (data?.code === 200) {
+      return jsonParser.parse(response.request.responseText);
+    }
+    Dialog.alert({
+      title: '错误',
+      message: data.msg,
+    });
+    return Promise.reject(new Error(data.msg));
   },
   (error) => {
-    Toast.clear();
+    if (error.config.loading) {
+      hideLoading();
+    }
     console.log(`response.error: ${error}`); // for debug
+    if (error.response?.data?.message) {
+      Dialog.alert({
+        title: '错误',
+        message: error.response.data.message,
+      });
+    }
     return Promise.reject(error);
   }
 );

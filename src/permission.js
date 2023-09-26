@@ -1,6 +1,6 @@
 import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css'; // progress bar style
-import setPageTitle from '@/utils/set-page-title';
+import setDocumentTitle from '@/utils/set-document-title';
 
 import router from './router';
 import store from './store';
@@ -15,7 +15,7 @@ router.beforeEach(async (to, from, next) => {
 
   // set page title
   if (to.meta.title) {
-    setPageTitle(to.meta.title);
+    setDocumentTitle(to.meta.title);
   }
 
   // determine whether the user has logged in

@@ -1,6 +1,6 @@
 import UUID from 'uuidjs';
 import config from '@/config';
-import getParsedSearch from '@/utils/get-parsed-search';
+import getParsedSearch from '@/utils/url/get-parsed-search';
 
 const state = {
   // UUID

@@ -12,6 +12,15 @@ module.exports = {
     'plugin:vue/recommended',
   ],
   rules: {
+    // 强制每行的最大属性数
+    'vue/max-attributes-per-line': [2, {
+      // 单行时可以接收最大数量
+      singleline: 3,
+      // 多行时可以接收最大数量
+      multiline: {
+        max: 1,
+      },
+    }],
     // 强制类方法使用 this
     'class-methods-use-this': 'off',
     // 要求或禁止末尾逗号
