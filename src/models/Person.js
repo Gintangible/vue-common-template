@@ -15,17 +15,26 @@ let DEFAULT_AGE_FROM = null;
 const DATE_PARSE_FORMAT = 'YYYY-M-D';
 
 class Person {
+  constructor(obj = {}) {
+    this.name = obj.name || '';
+    this.birthday = obj.birthday || '';
+    this.credential = Credential.create(obj.credential || {});
+    this.gender = obj.gender || '';
+    this.kinship = obj.kinship || '';
+    this.mobile = obj.mobile || '';
+  }
+
   assign(obj = {}) {
-    this.name = obj.name;
-    this.birthday = obj.birthday;
-    this.credential = Credential.create(obj.credential);
-    this.gender = obj.gender;
-    this.kinship = obj.kinship;
-    this.mobile = obj.mobile;
+    this.name = obj.name || '';
+    this.birthday = obj.birthday || '';
+    this.credential = Credential.create(obj.credential || {});
+    this.gender = obj.gender || '';
+    this.kinship = obj.kinship || '';
+    this.mobile = obj.mobile || '';
   }
 
   static create(obj) {
-    const result = new Insurant();
+    const result = new Person();
     if (Object.prototype.toString.call(obj) === '[object Object]') {
       result.assign(obj);
       if (result.hasCredential()) {
@@ -36,7 +45,7 @@ class Person {
   }
 
   static createArray(insurants) {
-    return insurants.map((insurant) => Insurant.create(insurant));
+    return insurants.map((insurant) => Person.create(insurant));
   }
 
   isIdentityCard() {

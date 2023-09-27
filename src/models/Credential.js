@@ -13,8 +13,8 @@ class Credential {
   }
 
   assign(obj = {}) {
-    this.type = obj.type;
-    this.number = obj.number;
+    this.type = obj.type || DEFAULT_CREDENTIAL_TYPE.value;
+    this.number = obj.number || '';
   }
 
   static create(obj) {

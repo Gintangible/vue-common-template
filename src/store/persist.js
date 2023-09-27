@@ -21,7 +21,6 @@ const vuexLocal = new VuexPersistence({
     udid: state.udid,                       // 用户设备的UDID
     user: {
       user: state.user.user,                // 当前用户
-      token: state.user.token,              // 用户的token
     },
   }),
 

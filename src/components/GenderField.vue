@@ -46,12 +46,16 @@ export default {
   },
   data() {
     return {
-      gender: this.model,                   // 选中的性别枚举值
+      gender: '',                   // 选中的性别枚举值
     };
   },
   watch: {
-    model(newValue) {
-      this.gender = newValue;
+    model: {
+      immediate: true,
+      deep: true,
+      handler(newValue) {
+        this.gender = newValue;
+      },
     },
   },
   methods: {

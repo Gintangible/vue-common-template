@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import vuexLocal from './persist';
-import getters from './getters';
 import app from './modules/app';
 import user from './modules/user';
 
@@ -17,11 +16,10 @@ const store = new Vuex.Store({
     user,
   },
 
-  getters,
-
   mutations: {
     INIT() {
       this.commit('app/INIT');
+      this.commit('user/INIT');
     },
     /**
     * 在 vuex 的 strict 模式下，vuex-persist 必须调用名为 RESTORE_MUTATION 的

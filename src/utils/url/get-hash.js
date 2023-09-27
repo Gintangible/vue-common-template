@@ -1,5 +1,4 @@
 // 获取当前地址的hash.
-
 function getHash(url) {
   if (url === undefined) {
     url = window.location;

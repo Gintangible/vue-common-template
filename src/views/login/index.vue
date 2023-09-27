@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <person-form v-model="user" class="login-form" />
+    <person-form v-model="user" class="login-form" @change="onChangeUser" />
     <van-button
       round
       color="linear-gradient(to bottom, #537dff, #0057d6)"
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import { Button } from 'vant';
 import PersonForm from '@/components/PersonForm';
 import Person from '@/models/Person';
@@ -27,10 +28,29 @@ export default {
       user: new Person(),
     };
   },
+  computed: {
+    ...mapState({
+      storeUser: (state) => state.user.user,
+    }),
+  },
+  watch: {
+    storeUser: {
+      immediate: true,
+      deep: true,
+      handler(newValue) {
+        this.user = Person.create(newValue);
+      }
+    },
+  },
   methods: {
+    onChangeUser() {
+      this.$store.commit('user/SET_USER', this.user);
+    },
     handleLogin() {
-      this.$store.dispatch('user/login', this.userInfo).then(() => {
-        this.$router.push({ path: this.redirect || '/' });
+      this.$store.dispatch('user/login', this.user).then(() => {
+        this.$router.push({
+          name: 'Home',
+        });
       });
     },
   },

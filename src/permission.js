@@ -1,9 +1,8 @@
 import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css'; // progress bar style
 import setDocumentTitle from '@/utils/set-document-title';
-
+import { getAuthToken } from '@/services/auth';
 import router from './router';
-import store from './store';
 
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
 
@@ -19,7 +18,7 @@ router.beforeEach(async (to, from, next) => {
   }
 
   // determine whether the user has logged in
-  const hasToken = store.getters.token;
+  const hasToken = getAuthToken();
 
   if (hasToken) {
     if (to.path === '/login') {

@@ -1,42 +1,42 @@
 <template>
   <div>
     <name-field
-      v-model="buyer.name"
+      v-model="person.name"
       :label="buyerNameLabel"
       placeholder="请填写您的姓名"
-      :readonly="buyerReadonly"
+      :readonly="readonly"
       @change="onChangeName"
       @clear-error="onClearError"
       @error="onError"
     />
     <credential-field
-      v-model="buyer.credential"
+      v-model="person.credential"
       type-placeholder="请选择您的证件类型"
       number-placeholder="请填写您的证件号码"
       type-readonly
-      :number-readonly="buyerReadonly"
+      :number-readonly="readonly"
       @change="onChangeCredential"
       @clear-error="onClearError"
       @error="onError"
     />
     <mobile-field
-      v-model="buyer.mobile"
+      v-model="person.mobile"
       placeholder="请填写您的手机号码"
-      :readonly="buyerReadonly"
+      :readonly="readonly"
       @change="onChangeMobile"
       @clear-error="onClearError"
       @error="onError"
     />
     <birthday-field
-      v-model="buyer.birthday"
-      :readonly="buyerReadonly"
+      v-model="person.birthday"
+      :readonly="readonly"
       @change="onChangeBirthday"
       @clear-error="onClearError"
       @error="onError"
     />
     <gender-field
-      v-model="buyer.gender"
-      :readonly="buyerReadonly"
+      v-model="person.gender"
+      :readonly="readonly"
       @confirm="onChangeGender"
       @clear-error="onClearError"
       @error="onError"
@@ -46,7 +46,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import { Notify } from 'vant';
 import NameField from '@/components/NameField';
 import MobileField from '@/components/MobileField';
@@ -74,55 +73,48 @@ export default {
     },
     buyerNameLabel: {
       type: String,
-      default: '缴费人',
+      default: '姓名',
     },
+    readonly: Boolean,
   },
   data() {
     return {
-      buyer: new Person(),
+      person: new Person(),
     };
-  },
-  computed: {
-    ...mapState({
-      buyerReadonly: (state) => state.user.buyerReadonly,
-    }),
-    isIdentityCard() {
-      return this.buyer.isIdentityCard();
-    },
   },
   watch: {
     model: {
       immediate: true,
       deep: true,
       handler(newValue) {
-        this.buyer.assign(newValue);
+        this.person = Person.create(newValue);
       },
     },
   },
   methods: {
     onChangeName(name) {
-      this.onChange(this.buyer, { name });
+      this.onChange(this.person, { name });
     },
 
     onChangeCredential(credential) {
       const changes = {};
-      this.buyer.setCredential(credential, changes);
-      this.onChange(this.buyer, changes);
+      this.person.setCredential(credential, changes);
+      this.onChange(this.person, changes);
     },
     onChangeBirthday(birthday) {
-      this.onChange(this.buyer, { birthday });
+      this.onChange(this.person, { birthday });
     },
     onChangeGender(gender) {
-      this.onChange(this.buyer, { gender });
+      this.onChange(this.person, { gender });
     },
 
     onChangeMobile(mobile) {
-      this.onChange(this.buyer, { mobile });
+      this.onChange(this.person, { mobile });
     },
 
-    onChange(buyer, changes) {
+    onChange(person, changes) {
       // 触发 input 事件
-      this.$emit('input', Person.create(buyer));   // 注意传递对象必须复制拷贝
+      this.$emit('input', Person.create(person));   // 注意传递对象必须复制拷贝
       // 触发 change 事件
       this.$emit('change', changes);
     },

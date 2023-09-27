@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Dialog } from 'vant';
 import JSONbig from 'json-bigint';
 import config from '@/config';
+import cache from './cache';
 import { showLoading, hideLoading } from './loading';
 
 const jsonParser = JSONbig({
@@ -17,18 +18,43 @@ const request = axios.create({
 
 // request拦截器
 request.interceptors.request.use(
-  (config) => {
+  (cfg) => {
     // 默认不开启Toast loading;
-    if (config.loading) {
+    if (cfg.loading) {
       showLoading();
     }
-    if (['get', 'delete', 'post', 'put'].includes(config.method) && !config.data) {
+    if (['get', 'delete', 'post', 'put'].includes(cfg.method) && !cfg.data) {
       //  给data赋值以绕过if判断
-      config.data = true;
+      cfg.data = true;
     }
-    config.headers['Content-Type'] = 'application/json;charset=UTF-8';
+    cfg.headers['Content-Type'] = 'application/json;charset=UTF-8';
     // Do something before request sending
-    return config;
+    const isRepeatSubmit = (cfg.headers || {}).repeatSubmit;
+    if (!isRepeatSubmit && ['post', 'put'].includes(cfg.method)) {
+      const requestObj = {
+        url: cfg.url,
+        data: typeof cfg.data === 'object' ? JSON.stringify(cfg.data) : cfg.data,
+        time: new Date().getTime(),
+      };
+      const sessionObj = cache.session.getJSON('sessionObj');
+      if (!sessionObj) {
+        cache.session.setJSON('sessionObj', requestObj);
+      } else {
+        const { url, data, time } = sessionObj;
+        const interval = 500;
+        if (data === requestObj.data
+          && url === requestObj.url
+          && requestObj.time - time < interval
+        ) {
+          const message = '数据正在处理，请勿重复操作';
+          console.warn(`[${url}]: ${message}`);
+          return Promise.reject(new Error(message));
+        } else {
+          cache.session.setJSON('sessionObj', requestObj);
+        }
+      }
+    }
+    return cfg;
   },
   (error) => {
     // Do something with request error
@@ -47,7 +73,7 @@ request.interceptors.response.use(
     // return response.data;
     const { data } = response;
     if (data?.code === 200) {
-      return jsonParser.parse(response.request.responseText);
+      return jsonParser.parse(response.request.responseText)?.data;
     }
     Dialog.alert({
       title: '错误',

@@ -4,6 +4,8 @@ import Mock from 'mockjs';
 const { Random } = Mock;
 
 export const user = {
-  name: Random.cname(),
-  IDCard: Random.id(),
+  code: 200,
+  data: {
+    token: Random.id(),
+  }
 };

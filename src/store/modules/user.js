@@ -1,15 +1,18 @@
-import Cookies from 'js-cookie';
 import { login } from '@/api/user';
 import Person from '@/models/Person';
+import { setAuthToken } from '@/services/auth';
 
 const state = {
   // 用户信息
   user: new Person(),
-
-  // 用户token
-  token: Cookies.get('token'),
 };
+
 const mutations = {
+  INIT(state) {
+    if (state.user) {
+      state.user = Person.create(state.user);
+    }
+  },
   SET_USER(state, obj) {
     const user = Person.create(obj);
     if (user) {
@@ -17,24 +20,13 @@ const mutations = {
     }
     state.user = user;
   },
-  SET_TOKEN(state, token) {
-    Cookies.set('token', token, {
-      expires: 7,
-    });
-  }
 };
 const actions = {
   login({ commit }, user) {
     return new Promise((resolve, reject) => {
-      login(user).then(() => {
-        const data = {
-          token: 'test_token',
-          user: {
-            name: 'gintanbile',
-          }
-        };
-        commit('SET_TOKEN', data.token);
-        commit('SET_USER', data.user);
+      login(user).then((res) => {
+        setAuthToken(res.token);
+        commit('SET_USER', user);
         resolve();
       }).catch((error) => {
         reject(error);

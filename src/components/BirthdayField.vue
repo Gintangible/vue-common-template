@@ -8,6 +8,7 @@
     :placeholder="placeholder"
     :min-date="minDate"
     :max-date="maxDate"
+    :input-align="inputAlign"
     :default-selected="defaultSelected"
     :readonly="readonly"
     @change="onChange"
@@ -22,9 +23,6 @@ export default {
   name: 'BirthdayField',
   components: {
     [DatetimeSelect.name]: DatetimeSelect,
-  },
-  model: {
-    prop: 'value',
   },
   props: {
     value: {                    // 绑定的出生日期的值
@@ -59,6 +57,10 @@ export default {
       type: String,
       default: '1990-01-01',
     },
+    inputAlign: {
+      type: String,
+      default: 'right',
+    },
     readonly: Boolean,          // 选项框中选择的日期是否只读
   },
   data() {
@@ -67,12 +69,13 @@ export default {
     };
   },
   watch: {
-    value(newValue) {
-      this.birthday = newValue;
+    value: {
+      immediate: true,
+      deep: true,
+      handler(newValue) {
+        this.birthday = newValue;
+      },
     },
-  },
-  mounted() {
-    this.birthday = this.value;
   },
   methods: {
     /**
