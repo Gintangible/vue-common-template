@@ -37,6 +37,7 @@ export default {
     value: {                          // 绑定的手机号码值
       type: String,
       required: true,
+      default: '',
     },
     required: Boolean,
     errorMessage: {

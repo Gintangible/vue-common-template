@@ -16,21 +16,21 @@ const DATE_PARSE_FORMAT = 'YYYY-M-D';
 
 class Person {
   constructor(obj = {}) {
-    this.name = obj.name || '';
-    this.birthday = obj.birthday || '';
+    this.name = obj.name;
+    this.birthday = obj.birthday;
     this.credential = Credential.create(obj.credential || {});
-    this.gender = obj.gender || '';
-    this.kinship = obj.kinship || '';
-    this.mobile = obj.mobile || '';
+    this.gender = obj.gender;
+    this.kinship = obj.kinship;
+    this.mobile = obj.mobile;
   }
 
   assign(obj = {}) {
-    this.name = obj.name || '';
-    this.birthday = obj.birthday || '';
+    this.name = obj.name;
+    this.birthday = obj.birthday;
     this.credential = Credential.create(obj.credential || {});
-    this.gender = obj.gender || '';
-    this.kinship = obj.kinship || '';
-    this.mobile = obj.mobile || '';
+    this.gender = obj.gender;
+    this.kinship = obj.kinship;
+    this.mobile = obj.mobile;
   }
 
   static create(obj) {

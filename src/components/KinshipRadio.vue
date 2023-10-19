@@ -42,8 +42,9 @@ export default {
   },
   props: {
     model: {                                // 双向绑定的参保人关系枚举值
-      type: null,
-      required: true,                       // 不限制类型，从而允许为null
+      type: String,
+      required: true,
+      default: '',
     },
     label: {
       type: String,

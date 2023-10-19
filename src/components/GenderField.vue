@@ -24,8 +24,9 @@ export default {
   },
   props: {
     model: {                                // 绑定的性别枚举值
-      type: null,
+      type: String,
       required: true,
+      default: '',
     },
     label: {                                // 选项框标签
       type: String,

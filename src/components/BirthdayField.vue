@@ -28,6 +28,7 @@ export default {
     value: {                    // 绑定的出生日期的值
       type: String,
       required: true,
+      default: '',
     },
     valueFormat: {              // 选中的出生日期数值的格式
       type: String,
