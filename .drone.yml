@@ -3,20 +3,25 @@ type: docker
 name: 项目名称
 
 volumes:
+  - name: npm_cache
+    host:
+      path: /media/disk/cache/.npm
   # 缓存目录名
   - name: cache
     host:
       # 目录映射到宿主机的路径
-      path: /data/cache/项目名称/node_modules
+      path: /media/disk/cache/项目名称/node_modules
 
 steps:
   # 当前步骤的名字
   - name: build-stage
     # 该步骤依赖的容器镜像的名字
-    image: njzhyl/node:v1.0
+    image: njzhyl/node:v1.1
     # 将容器内目录挂载到宿主机
-    volumes:
     # 构建缓存
+    volumes:
+      - name: npm_cache
+        path: /root/.npm
       - name: cache
         path: /drone/src/node_modules
     # 在当前容器执行的指令
@@ -36,16 +41,18 @@ steps:
         - stage
 
   - name: build-prod
-    image: njzhyl/node:v1.0
+    image: njzhyl/node:v1.1
     volumes:
+      - name: npm_cache
+        path: /root/.npm
       - name: cache
         path: /drone/src/node_modules
     commands:
       # 打包
       - echo "build-production"
       - yarn
-      - yarn build:prod
-      # 不进行公钥确认
+      - yarn build
+      # 使用的是服务器账号
       - scp -o "StrictHostKeyChecking no" -r 本地项目目录 服务器地址
       - echo "build-finish"
     when:
