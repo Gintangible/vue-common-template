@@ -67,14 +67,21 @@ export default {
       type: String,
       default: 'datetime',
     },
-    name: String,
+    name: {
+      type: String,
+      default: '',
+    },
     required: Boolean,
     isLink: Boolean,
     disabled: Boolean,
     rules: {
       type: Array,
+      default: () => [],
     },
-    inputAlign: String,
+    inputAlign: {
+      type: String,
+      default: '',
+    },
     // type为time时，valueFormat无效，固定为：HH:mm
     valueFormat: {
       type: String,
@@ -86,19 +93,40 @@ export default {
       default: 'YYYY-MM-DD HH:mm',
     },
     // 默认选中的日期时间
-    defaultSelected: String,
+    defaultSelected: {
+      type: String,
+      default: '',
+    },
     label: {
       type: String,
       default: '日期时间',
     },
-    placeholder: String,
+    placeholder: {
+      type: String,
+      default: '',
+    },
     minDate: Date,
     maxDate: Date,
-    minHour: [Number, String],
-    maxHour: [Number, String],
-    minMinute: [Number, String],
-    maxMinute: [Number, String],
-    filter: Function,
+    minHour: {
+      type: [Number, String],
+      default: '',
+    },
+    maxHour: {
+      type: [Number, String],
+      default: '',
+    },
+    minMinute: {
+      type: [Number, String],
+      default: '',
+    },
+    maxMinute: {
+      type: [Number, String],
+      default: '',
+    },
+    filter: {
+      type: Function,
+      default() {},
+    },
   },
   data() {
     return {
